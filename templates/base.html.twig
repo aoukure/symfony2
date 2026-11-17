@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Книжный магазин{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ path('store_index') }}">Главная</a>
+    </nav>
+    <hr>
+
+    {% block body %}{% endblock %}
+</body>
+</html>

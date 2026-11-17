@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Книжный магазин — отчёт{% endblock %}
+
+{% block body %}
+    <h1>Книжный магазин</h1>
+
+    <h2>1. Люди и количество покупок</h2>
+    <table border="1" cellpadding="8">
+        <tr><th>Имя</th><th>Email</th><th>Заказов</th></tr>
+        {% for c in customers %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.orders_count }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>2. Заказы и суммы</h2>
+    <table border="1" cellpadding="8">
+        <tr><th>№ заказа</th><th>Клиент</th><th>Книги</th><th>Сумма</th></tr>
+        {% for o in orders %}
+            <tr>
+                <td>{{ o.id }}</td>
+                <td>{{ o.customer }}</td>
+                <td>{{ o.titles|join(', ') }}</td>
+                <td>{{ o.total }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>3. Топ-3 клиентов по потраченным деньгам</h2>
+    <table border="1" cellpadding="8">
+        <tr><th>Имя</th><th>Потрачено</th></tr>
+        {% for c in topCustomers %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>{{ c.total }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>4. Средняя сумма заказа</h2>
+    <p>{{ averageOrder|number_format(2, '.', ' ') }}</p>
+
+    <h2>5. Самая дорогая книга</h2>
+    <p>{{ mostExpensiveBook.title }} — {{ mostExpensiveBook.price }}</p>
+{% endblock %}
